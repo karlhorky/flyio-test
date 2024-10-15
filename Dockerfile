@@ -27,11 +27,8 @@ COPY --from=builder /app/package.json ./
 COPY --from=builder /app/next.config.ts ./
 COPY --from=builder /app/scripts ./scripts
 
-# Install envinfo (available but not run by default)
-RUN npm install -g envinfo
+RUN pnpm add envinfo
 
-# Copy start script and make it executable
 RUN chmod +x /app/scripts/fly-io-start.sh
 
-# Start the application
-CMD ["/app/scripts/fly-io-start.sh"]
+CMD ["sh", "-c", "sleep infinity"]
